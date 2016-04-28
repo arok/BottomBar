@@ -16,6 +16,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -1199,7 +1200,10 @@ public class BottomBar extends FrameLayout implements View.OnClickListener, View
 
             if (!mIsTabletMode) {
                 TextView title = (TextView) bottomBarTab.findViewById(R.id.bb_bottom_bar_title);
-                title.setText(bottomBarItemBase.getTitle(mContext));
+                String titleLabel = bottomBarItemBase.getTitle(mContext);
+                title.setText(titleLabel);
+
+                title.setVisibility(TextUtils.isEmpty(titleLabel) ? GONE : VISIBLE);
 
                 if (mPendingTextAppearance != -1) {
                     MiscUtils.setTextAppearance(title, mPendingTextAppearance);
